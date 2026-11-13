@@ -33,6 +33,9 @@ struct call_case {
     const char* receiver; ///< Equivalent CEL receiver call.
     double expected;      ///< Expected result, within transcendental precision.
 };
+
+/// Identifies an independently installed overload of the min function.
+struct client_min {};
 } // namespace
 
 TEST_CASE("each scalar operation preserves its name signature and argument order") {
@@ -99,12 +102,14 @@ TEST_CASE("persistent library operations are visible in closure bodies") {
 TEST_CASE("installation preserves unrelated registrations and disjoint overloads") {
     cel::op_lookup lookup;
     lookup.register_op<double, double>("twice", [](double x) { return x * 2.0; });
+    lookup.register_function("min", client_min{});
     lookup.register_op<bool, bool, bool>("min", [](bool a, bool b) { return a && b; });
     cel::stdlib::install(lookup);
     cel::parser parser(std::move(lookup));
     cel::raw_stack stack;
     CHECK(parser.parse_str("3.0.twice()").prepare<double>().call(stack) == 6.0);
     CHECK_FALSE(parser.parse_str("true.min(false)").prepare<bool>().call(stack));
+    CHECK_FALSE(parser.parse_str("min(true, false)").prepare<bool>().call(stack));
     CHECK(parser.parse_str("min(2.0, 3.0)").prepare<double>().call(stack) == 2.0);
 }
 

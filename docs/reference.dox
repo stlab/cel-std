@@ -1,0 +1,85 @@
+/**
+\page reference Library reference
+
+Use this reference to select the C++ installation interface or look up a retained
+CEL signature. Operation links point to the CEL language book, which defines
+numeric behavior, error conditions, and examples.
+
+\section package Package and installer
+
+The CMake package is `cel-std`; its exported target is `cel::std`.
+The public header is `<cel/std.hpp>`.
+Call cel::stdlib::install with a `cel::op_lookup` before constructing your parser.
+See \ref tutorial for a compiled example.
+
+The installer registers persistent ordinary and receiver-call signatures.
+The receiver supplies the first operand; no numeric conversions are introduced.
+Independent libraries can register disjoint overloads before or after installation.
+Install each exact standard-library signature only once per lookup.
+
+\section signatures Retained CEL signatures
+
+Every `f64` maps to C++ `double`. Scalar result types remain `f64`, including
+rounding operations. `sin_cos` returns a structural tuple whose C++ adapter is
+`std::tuple<double, double>`.
+
+The following table is the entire port, not the book's larger Rust type set:
+
+| CEL signature | Operation contract |
+| --- | --- |
+| `min(a: f64, b: f64) -> f64` | [min](https://stlab.github.io/cel-rs/cel-book/standard-library.html#min) |
+| `max(a: f64, b: f64) -> f64` | [max](https://stlab.github.io/cel-rs/cel-book/standard-library.html#max) |
+| `clamp(x: f64, lo: f64, hi: f64) -> f64` | [clamp](https://stlab.github.io/cel-rs/cel-book/standard-library.html#clamp) |
+| `abs(x: f64) -> f64` | [abs](https://stlab.github.io/cel-rs/cel-book/standard-library.html#abs) |
+| `signum(x: f64) -> f64` | [signum](https://stlab.github.io/cel-rs/cel-book/standard-library.html#signum) |
+| `sqrt(x: f64) -> f64` | [sqrt](https://stlab.github.io/cel-rs/cel-book/standard-library.html#sqrt) |
+| `floor(x: f64) -> f64` | [floor](https://stlab.github.io/cel-rs/cel-book/standard-library.html#floor) |
+| `ceil(x: f64) -> f64` | [ceil](https://stlab.github.io/cel-rs/cel-book/standard-library.html#ceil) |
+| `trunc(x: f64) -> f64` | [trunc](https://stlab.github.io/cel-rs/cel-book/standard-library.html#trunc) |
+| `fract(x: f64) -> f64` | [fract](https://stlab.github.io/cel-rs/cel-book/standard-library.html#fract) |
+| `round_ties_even(x: f64) -> f64` | [round_ties_even](https://stlab.github.io/cel-rs/cel-book/standard-library.html#round-ties-even) |
+| `round(x: f64) -> f64` | [round](https://stlab.github.io/cel-rs/cel-book/standard-library.html#round) |
+| `sin(x: f64) -> f64` | [sin](https://stlab.github.io/cel-rs/cel-book/standard-library.html#sin) |
+| `cos(x: f64) -> f64` | [cos](https://stlab.github.io/cel-rs/cel-book/standard-library.html#cos) |
+| `tan(x: f64) -> f64` | [tan](https://stlab.github.io/cel-rs/cel-book/standard-library.html#tan) |
+| `asin(x: f64) -> f64` | [asin](https://stlab.github.io/cel-rs/cel-book/standard-library.html#asin) |
+| `acos(x: f64) -> f64` | [acos](https://stlab.github.io/cel-rs/cel-book/standard-library.html#acos) |
+| `atan(x: f64) -> f64` | [atan](https://stlab.github.io/cel-rs/cel-book/standard-library.html#atan) |
+| `atan2(y: f64, x: f64) -> f64` | [atan2](https://stlab.github.io/cel-rs/cel-book/standard-library.html#atan2) |
+| `sin_cos(x: f64) -> (f64, f64)` | [sin_cos](https://stlab.github.io/cel-rs/cel-book/standard-library.html#sin-cos) |
+| `to_radians(x: f64) -> f64` | [to_radians](https://stlab.github.io/cel-rs/cel-book/standard-library.html#to-radians) |
+| `to_degrees(x: f64) -> f64` | [to_degrees](https://stlab.github.io/cel-rs/cel-book/standard-library.html#to-degrees) |
+| `hypot(x: f64, y: f64) -> f64` | [hypot](https://stlab.github.io/cel-rs/cel-book/standard-library.html#hypot) |
+| `cbrt(x: f64) -> f64` | [cbrt](https://stlab.github.io/cel-rs/cel-book/standard-library.html#cbrt) |
+| `powf(x: f64, exponent: f64) -> f64` | [powf](https://stlab.github.io/cel-rs/cel-book/standard-library.html#powf) |
+| `exp(x: f64) -> f64` | [exp](https://stlab.github.io/cel-rs/cel-book/standard-library.html#exp) |
+| `exp2(x: f64) -> f64` | [exp2](https://stlab.github.io/cel-rs/cel-book/standard-library.html#exp2) |
+| `ln(x: f64) -> f64` | [ln](https://stlab.github.io/cel-rs/cel-book/standard-library.html#ln) |
+| `log(x: f64, base: f64) -> f64` | [log](https://stlab.github.io/cel-rs/cel-book/standard-library.html#log) |
+| `log2(x: f64) -> f64` | [log2](https://stlab.github.io/cel-rs/cel-book/standard-library.html#log2) |
+| `log10(x: f64) -> f64` | [log10](https://stlab.github.io/cel-rs/cel-book/standard-library.html#log10) |
+| `recip(x: f64) -> f64` | [recip](https://stlab.github.io/cel-rs/cel-book/standard-library.html#recip) |
+| `mul_add(x: f64, multiplier: f64, addend: f64) -> f64` | [mul_add](https://stlab.github.io/cel-rs/cel-book/standard-library.html#mul-add) |
+| `rem_euclid(x: f64, divisor: f64) -> f64` | [rem_euclid](https://stlab.github.io/cel-rs/cel-book/standard-library.html#rem-euclid) |
+| `copysign(magnitude: f64, sign: f64) -> f64` | [copysign](https://stlab.github.io/cel-rs/cel-book/standard-library.html#copysign) |
+
+No `powi`, integer, or `f32` signature is installed. Those parts of the linked
+book describe Rust capabilities outside this port.
+
+\section floating Floating-point environment
+
+Build for IEEE 754 binary64 without fast-math assumptions.
+The implementation uses C++ standard-library math and preserves the book's
+documented NaN, infinity, signed-zero, and rounding behavior. Transcendental
+results need not be bit-identical across implementations; compare them using a
+tolerance. NaN payloads and signs are unspecified.
+
+`round_ties_even` is independent of the ambient rounding mode and does not
+change that mode. The library does not promise to preserve floating-point
+exception flags or `errno`.
+
+During evaluation, invalid clamp bounds throw
+`std::invalid_argument("invalid clamp bounds")`. Other numeric domain failures
+produce the floating-point results documented in the book. Unsupported
+signatures are parser compilation errors.
+*/

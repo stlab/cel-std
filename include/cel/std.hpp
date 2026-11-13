@@ -1,7 +1,10 @@
 // SPDX-License-Identifier: BSL-1.0
+/// \file
+/// Installs the f64 CEL standard library.
 #ifndef CEL_STD_HPP
 #define CEL_STD_HPP
 
+/// Provides CEL compilation, runtime execution, and library extensions.
 namespace cel {
 class op_lookup;
 

@@ -27,11 +27,8 @@ struct function_marker {};
 template <auto Function, class... A>
 void add(cel::op_lookup& lookup, std::string_view name) {
     using result = std::invoke_result_t<decltype(Function), A...>;
-    using marker = function_marker<Function>;
     lookup.register_op<result, A...>(name, Function);
-    lookup.register_function(name, marker{});
-    lookup.register_op<result, marker, A...>(
-        "()", [](marker, A... arguments) { return Function(arguments...); });
+    lookup.register_function(name, function_marker<Function>{});
 }
 
 /// Rounds to the nearest integer, selecting the even neighbor on a tie.
