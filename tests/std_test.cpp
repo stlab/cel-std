@@ -126,8 +126,8 @@ TEST_CASE("the subset rejects powi unsupported operand types and wrong arities")
 }
 
 TEST_CASE("clamp validates bounds and otherwise preserves Rust floating behavior") {
-    for (auto text :
-         {"clamp(1.0, 3.0, 2.0)", "clamp(1.0, 0.0 / 0.0, 2.0)", "clamp(1.0, 0.0, 0.0 / 0.0)"}) {
+    for (auto text : {"clamp(1.0, 3.0, 2.0)", "clamp(0.0 / 0.0, 3.0, 2.0)",
+                      "clamp(1.0, 0.0 / 0.0, 2.0)", "clamp(1.0, 0.0, 0.0 / 0.0)"}) {
         CAPTURE(text);
         CHECK_THROWS_WITH_AS(evaluate(text), "invalid clamp bounds", std::invalid_argument);
     }

@@ -30,7 +30,7 @@ cpp_library_setup(
     SOURCES std.cpp
     TESTS std_test.cpp
     EXAMPLES example.cpp
-    DOCS_INPUTS README.md docs/tutorial.md docs/reference.dox
+    DOCS_INPUTS README.md docs/tutorial.md docs/reference.md
     DOCS_OPTIONS
         "USE_MDFILE_AS_MAINPAGE = ${CMAKE_CURRENT_SOURCE_DIR}/README.md"
         "EXCLUDE_SYMBOLS = cel::op_lookup"

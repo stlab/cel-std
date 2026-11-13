@@ -50,6 +50,7 @@ double rem_euclid(double x, double divisor) {
 /// Throws std::invalid_argument("invalid clamp bounds") for reversed or NaN bounds.
 double clamp(double x, double lower, double upper) {
     if (!(lower <= upper)) throw std::invalid_argument("invalid clamp bounds");
+    if (std::isnan(x)) return x;
     return std::clamp(x, lower, upper);
 }
 } // namespace

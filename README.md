@@ -55,7 +55,7 @@ Open `build/docs/html/index.html`.
 ## Documentation
 
 The [tutorial](docs/tutorial.md) teaches installation, parsing, execution,
-and tuple results. The [reference](docs/reference.dox) lists the C++ interface
+and tuple results. The [reference](docs/reference.md) lists the C++ interface
 and retained signatures. For operation behavior and examples, see the
 [CEL language book's standard library](
 https://stlab.github.io/cel-rs/cel-book/standard-library.html).

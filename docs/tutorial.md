@@ -92,4 +92,4 @@ Replace `your_app` with your executable target. Pass the installation prefix
 as `-DCMAKE_PREFIX_PATH=/PATH/TO/PREFIX` when configuring the consumer.
 Verify that the example produces the output shown in this tutorial.
 
-See the \ref reference for the complete retained signature table.
+See the [library reference](reference.md) for the complete retained signature table.

@@ -1,23 +1,22 @@
-/**
-\page reference Library reference
+# Library reference {#reference}
 
 Use this reference to select the C++ installation interface or look up a retained
 CEL signature. Operation links point to the CEL language book, which defines
 numeric behavior, error conditions, and examples.
 
-\section package Package and installer
+## Package and installer
 
 The CMake package is `cel-std`; its exported target is `cel::std`.
 The public header is `<cel/std.hpp>`.
 Call cel::stdlib::install with a `cel::op_lookup` before constructing your parser.
-See \ref tutorial for a compiled example.
+See the [tutorial](tutorial.md) for a compiled example.
 
 The installer registers persistent ordinary and receiver-call signatures.
 The receiver supplies the first operand; no numeric conversions are introduced.
 Independent libraries can register disjoint overloads before or after installation.
 Install each exact standard-library signature only once per lookup.
 
-\section signatures Retained CEL signatures
+## Retained CEL signatures
 
 Every `f64` maps to C++ `double`. Scalar result types remain `f64`, including
 rounding operations. `sin_cos` returns a structural tuple whose C++ adapter is
@@ -66,7 +65,7 @@ The following table is the entire port, not the book's larger Rust type set:
 No `powi`, integer, or `f32` signature is installed. Those parts of the linked
 book describe Rust capabilities outside this port.
 
-\section floating Floating-point environment
+## Floating-point environment
 
 Build for IEEE 754 binary64 without fast-math assumptions.
 The implementation uses C++ standard-library math and preserves the book's
@@ -82,4 +81,3 @@ During evaluation, invalid clamp bounds throw
 `std::invalid_argument("invalid clamp bounds")`. Other numeric domain failures
 produce the floating-point results documented in the book. Unsupported
 signatures are parser compilation errors.
-*/
