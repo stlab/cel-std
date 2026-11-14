@@ -1,0 +1,6 @@
+/build*/
+/.claude/worktrees/
+/.superpowers/
+/.cache/
+/.clangd
+/compile_commands.json
