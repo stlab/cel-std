@@ -21,6 +21,8 @@ if(MODE STREQUAL "source")
     list(APPEND options "-DCEL_STD_SOURCE_DIR=@CMAKE_CURRENT_SOURCE_DIR@"
         "-DBUILD_TESTING=OFF" "-DCEL_INSTALL=OFF")
 elseif(MODE STREQUAL "installed")
+    run("@CMAKE_COMMAND@" --install "@cel-parser_BINARY_DIR@"
+        ${build_config} --prefix "${root}/prefix")
     run("@CMAKE_COMMAND@" --install "@CMAKE_CURRENT_BINARY_DIR@"
         ${build_config} --prefix "${root}/prefix")
     list(APPEND options

@@ -16,16 +16,11 @@ Use C++20 and CMake 3.24 or later. After loading [CPM](
 https://github.com/cpm-cmake/CPM.cmake), add the library to your project:
 
 ```cmake
-CPMAddPackage(
-    NAME cel-std
-    GITHUB_REPOSITORY stlab/cel-std
-    GIT_TAG feat/f64-port
-)
+CPMAddPackage("gh:stlab/cel-std@1.0.0")
 target_link_libraries(your_app PRIVATE cel::std)
 ```
 
-Replace `your_app` with your executable target. The feature branch contains
-the initial port; pin a reviewed commit for reproducible builds.
+Replace `your_app` with your executable target.
 The library brings in compatible, pinned parser and runtime dependencies.
 
 Include `<cel/std.hpp>` and `<cel/parser/compiler.hpp>`, create a

@@ -8,20 +8,12 @@ cpp_library_enable_dependency_tracking()
 project(std LANGUAGES CXX)
 set(CMAKE_CXX_EXTENSIONS OFF)
 include(GNUInstallDirs)
-if(PROJECT_IS_TOP_LEVEL)
-    include(CTest)
-endif()
+
+include(CTest)
 
 option(CEL_INSTALL "Enable installation for CEL libraries" ${PROJECT_IS_TOP_LEVEL})
-CPMAddPackage(
-    NAME cel-parser
-    GITHUB_REPOSITORY stlab/cel-parser
-    GIT_TAG fac94057fd8a26a06ababbd453b86050584a3c61
-)
+CPMAddPackage("gh:stlab/cel-parser@1.0.0")
 
-if(NOT CPP_LIBRARY_VERSION)
-    set(CPP_LIBRARY_VERSION "0.1.0")
-endif()
 cpp_library_setup(
     DESCRIPTION "The f64 CEL standard library"
     NAMESPACE cel
@@ -36,7 +28,6 @@ cpp_library_setup(
         "EXCLUDE_SYMBOLS = cel::op_lookup"
         "WARN_AS_ERROR = YES"
         "FULL_PATH_NAMES = NO"
-        "STRIP_FROM_PATH = ${CMAKE_CURRENT_SOURCE_DIR}"
         "STRIP_FROM_INC_PATH = ${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 cpp_library_map_dependency("cel::parser" "cel-parser CONFIG")
