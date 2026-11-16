@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 
 include(cmake/CPM.cmake)
-CPMAddPackage("gh:stlab/cpp-library@6.0.0")
+CPMAddPackage("gh:stlab/cpp-library@6.0.1")
 include("${cpp-library_SOURCE_DIR}/cpp-library.cmake")
 cpp_library_enable_dependency_tracking()
 
