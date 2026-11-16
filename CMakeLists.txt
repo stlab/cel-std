@@ -1,13 +1,11 @@
 cmake_minimum_required(VERSION 3.24)
 
 include(cmake/CPM.cmake)
-CPMAddPackage("gh:stlab/cpp-library@5.8.1")
+CPMAddPackage("gh:stlab/cpp-library@6.0.0")
 include("${cpp-library_SOURCE_DIR}/cpp-library.cmake")
 cpp_library_enable_dependency_tracking()
 
 project(std LANGUAGES CXX)
-set(CMAKE_CXX_EXTENSIONS OFF)
-include(GNUInstallDirs)
 
 include(CTest)
 
@@ -17,7 +15,6 @@ CPMAddPackage("gh:stlab/cel-parser@1.0.0")
 cpp_library_setup(
     DESCRIPTION "The f64 CEL standard library"
     NAMESPACE cel
-    REQUIRES_CPP_VERSION 20
     HEADERS std.hpp
     SOURCES std.cpp
     TESTS std_test.cpp
