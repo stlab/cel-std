@@ -10,7 +10,7 @@ project(std LANGUAGES CXX)
 include(CTest)
 
 option(CEL_INSTALL "Enable installation for CEL libraries" ${PROJECT_IS_TOP_LEVEL})
-CPMAddPackage("gh:stlab/cel-parser@1.0.0")
+CPMAddPackage("gh:stlab/cel-parser@1.0.2")
 
 cpp_library_setup(
     DESCRIPTION "The f64 CEL standard library"
@@ -27,7 +27,7 @@ cpp_library_setup(
         "FULL_PATH_NAMES = NO"
         "STRIP_FROM_INC_PATH = ${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
-cpp_library_map_dependency("cel::parser" "cel-parser CONFIG")
+cpp_library_map_dependency("cel::parser" "cel-parser 1.0.2 CONFIG")
 target_link_libraries(std PUBLIC cel::parser)
 if(CEL_INSTALL)
     install(FILES LICENSE licenses/CPM-MIT.txt
