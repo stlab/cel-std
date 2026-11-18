@@ -30,7 +30,7 @@ compiled example and installed-package instructions.
 
 ## Build and test
 
-Configure, build, and run all unit, example, and consumer tests:
+Configure, build, and run all unit and example tests:
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DBUILD_DOCS=OFF
