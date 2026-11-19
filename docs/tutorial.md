@@ -69,17 +69,31 @@ fails.
 
 ## Consume an installed package
 
-To install a release build, run:
+Install `cel-runtime` 1.1.2 and `cel-parser` 1.1.1 separately before installing
+`cel-std`. From the `cel-std` source directory, run:
 
 ```sh
+cmake -S /PATH/TO/cel-runtime -B build/runtime -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_TESTING=OFF -DBUILD_DOCS=OFF
+cmake --build build/runtime --config Release
+cmake --install build/runtime --config Release --prefix /PATH/TO/PREFIX
+
+cmake -S /PATH/TO/cel-parser -B build/parser -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_TESTING=OFF -DBUILD_DOCS=OFF -DCPM_USE_LOCAL_PACKAGES=ON \
+  -DCMAKE_PREFIX_PATH=/PATH/TO/PREFIX
+cmake --build build/parser --config Release
+cmake --install build/parser --config Release --prefix /PATH/TO/PREFIX
+
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release \
-  -DBUILD_TESTING=OFF -DBUILD_DOCS=OFF -DCEL_INSTALL=ON
+  -DBUILD_TESTING=OFF -DBUILD_DOCS=OFF -DCPM_USE_LOCAL_PACKAGES=ON \
+  -DCMAKE_PREFIX_PATH=/PATH/TO/PREFIX
 cmake --build build/release --config Release
 cmake --install build/release --config Release --prefix /PATH/TO/PREFIX
 ```
 
-Replace `/PATH/TO/PREFIX` with your installation prefix. This installs the
-standard library and its parser/runtime dependencies.
+Replace `/PATH/TO/cel-runtime` and `/PATH/TO/cel-parser` with the respective
+source directories, and `/PATH/TO/PREFIX` with your installation prefix.
+Each install command installs only that library, not its dependencies.
 
 In the consuming project, find the package and link its exported target:
 
