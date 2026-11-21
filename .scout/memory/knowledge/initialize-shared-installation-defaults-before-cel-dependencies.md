@@ -20,6 +20,6 @@ Keep cel-std's cpp_library_setup call before the cel-parser CPMAddPackage call; 
 
 CEL packages share the CEL_INSTALL cache option. cpp-library initializes it from PROJECT_IS_TOP_LEVEL only on its first declaration. If a nested parser/runtime package declares it first, a fresh build can cache OFF and cel-std installs nothing. Initializing the root through cpp_library_setup first gives the intended top-level default while preserving an explicit CEL_INSTALL=OFF. Do not restore a library-specific predeclaration of the shared option.
 
-When changing dependency/setup order, verify Release installation with a fresh CMake cache and no explicit CEL_INSTALL value, then verify the explicit OFF case. A previously configured cache retaining ON can hide this regression; use the generated package-artifact check to detect a missing installation.
+When changing dependency/setup order, inspect a fresh source-build CMake cache to confirm CEL_INSTALL's default and explicit OFF handling. Do not exercise installation or package-artifact tests; the user requires source-only validation.
 
 Aliases / also known as: CEL_INSTALL, cpp_library_setup, CPMAddPackage, installation defaults, fresh CMake cache

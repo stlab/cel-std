@@ -69,7 +69,7 @@ fails.
 
 ## Consume an installed package
 
-Install `cel-runtime` 1.1.2 and `cel-parser` 1.1.1 separately before installing
+Install `cel-runtime` 1.1.3 and `cel-parser` 1.1.2 separately before installing
 `cel-std`. From the `cel-std` source directory, run:
 
 ```sh
