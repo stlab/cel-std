@@ -122,7 +122,7 @@ rejected signatures, floating-point edge cases, and tuple structure.
 Keep these public-interface tests external. Private tests, if added, belong in
 their owning `.cpp` under `#if CPP_LIBRARY_TESTING()` after including
 `<cpp-library/testing.hpp>`; guard doctest and test-only helpers there too.
-Use the toolkit's thread, static-test-support, generated-runner, and 120-second
+Use the toolkit's thread, generated-runner, and 120-second
 timeout defaults. Standalone tests must not receive the private `src` include root.
 
 `examples/example.cpp` is compiled and run by CTest and included directly
