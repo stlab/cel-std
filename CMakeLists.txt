@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 
 include(cmake/CPM.cmake)
-CPMAddPackage("gh:stlab/cpp-library@6.2.0")
+CPMAddPackage("gh:stlab/cpp-library@7.0.0")
 include("${cpp-library_SOURCE_DIR}/cpp-library.cmake")
 cpp_library_enable_dependency_tracking()
 
@@ -23,15 +23,5 @@ cpp_library_setup(
     DOCS_OPTIONS
         "USE_MDFILE_AS_MAINPAGE = ${CMAKE_CURRENT_SOURCE_DIR}/README.md"
 )
-CPMAddPackage("gh:stlab/cel-parser@1.1.2")
+CPMAddPackage("gh:stlab/cel-parser@1.1.3")
 target_link_libraries(std PUBLIC cel::parser)
-
-# Standalone tests use public headers, not the toolkit's private source include root.
-get_property(directory_targets DIRECTORY PROPERTY BUILDSYSTEM_TARGETS)
-foreach(directory_target IN LISTS directory_targets)
-    get_target_property(include_directories "${directory_target}" INCLUDE_DIRECTORIES)
-    if(include_directories)
-        list(REMOVE_ITEM include_directories "${CMAKE_CURRENT_SOURCE_DIR}/src")
-        set_property(TARGET "${directory_target}" PROPERTY INCLUDE_DIRECTORIES "${include_directories}")
-    endif()
-endforeach()
